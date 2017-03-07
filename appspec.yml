@@ -3,6 +3,15 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user
-
+hooks:
+  BeforeInstall:
+    - location: scripts/BeforeInstall.sh
+  AfterInstall:
+    - location: scripts/AfterInstall.sh
+  ApplicationStart:
+    - location: scripts/ApplicationStart.sh
+      timeout: 3600
+  ValidateService:
+    - location: scripts/ValidateService.sh
 
 
