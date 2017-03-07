@@ -1,21 +1,17 @@
 version: 0.0
 os: linux
 files:
-  - source: Config/config.txt
-    destination: /webapps/Config
-  - source: source
-    destination: /webapps/myApp
+  - source: /
+    destination: /home/ec2-user
 hooks:
   BeforeInstall:
-    - location: Scripts/UnzipResourceBundle.sh
-    - location: Scripts/UnzipDataBundle.sh
+    - location: Scripts/BeforeInstall.sh
   AfterInstall:
-    - location: Scripts/RunResourceTests.sh
-      timeout: 180
+    - location: Scripts/AfterInstall.sh
   ApplicationStart:
-    - location: Scripts/RunFunctionalTests.sh
+    - location: Scripts/ApplicationStart.sh
       timeout: 3600
   ValidateService:
-    - location: Scripts/MonitorService.sh
-      timeout: 3600
-      runas: codedeployuser
+    - location: Scripts/ValidateService.sh
+
+
